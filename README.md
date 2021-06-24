@@ -80,3 +80,89 @@ print(person.drive_check())
 print(person.drink_check())
 print(person.student_check())
 ```
+
+## `calculator.py`
+We were tasked to create a calculator with the basic functions, add, subtract, multiply and divide:
+```python
+class Calculator:
+    def add(self, num1, num2):
+        return num1 + num2
+
+    def subtract(self, num1, num2):
+        return num1 - num2
+
+    def multiply(self, num1, num2):
+        return num1 * num2
+
+    def divide(self, num1, num2):
+        return num1 / num2
+```
+So first the different operations were defined.
+
+Then we assign the class and functions that we want to use to a variable to make it easier to call:
+```python
+calculation = Calculator()
+```
+Then we asked the user what they wanted to do and with what numbers
+```python
+operation = input("What operation would you like to do?\nAdd, Subtract, Multiply, Divide? ")
+num1 = int(input("What is your first number? "))
+num2 = int(input("What is your second number? "))
+```
+Finally, we carried out the operations for them:
+```python
+if operation.strip().lower() == "add":
+    print(calculation.add(num1, num2))
+elif operation.strip().lower() == "subtract":
+    print(calculation.subtract(num1, num2))
+elif operation.strip().lower() == "multiply":
+    print(calculation.multiply(num1, num2))
+elif operation.strip().lower() == "divide":
+    print(calculation.divide(num1, num2))
+```
+
+## `functional_calculator.py`
+Next we had to create a new file that inherited the classes and functions of `calculator.py` and added a few new functions
+
+First the imports:
+```python
+from calculator import Calculator
+import math
+```
+We import our `Calculator` class from the previous task as well as `math` to help with some of the operations we're going to be doing later on:
+```python
+class FunctionalCalculator(Calculator):
+    def __init__(self):
+        super().__init__()
+
+    def circle_area(self, num1):
+        return math.pi * (num1 ** 2) # We needed pi from math to calculate this
+
+    def square_area(self, num1, num2):
+        return self.multiply(num1, num2)
+
+    def triangle_area(self, num1, num2):
+        return .5 * self.multiply(num1, num2)
+```
+Here we define our different operations which are just some simple area calculations
+
+We assign the class and functions that we want to use to a variable again to make it easier to call:
+```python
+calc = FunctionalCalculator()
+```
+Then we asked the user what they wanted to do and with what numbers. Since `circle_area` only needs one number, we'll only ask for one now, ask for the other later 
+```python
+operation = input("What operation would you like to do?\nCircle, Square, Triangle? ")
+num1 = int(input("What is your first number? "))
+```
+Finally, we carried out the operations for them:
+```python
+if operation.strip().lower() == "circle":
+    print(calc.circle_area(num1))
+elif operation.strip().lower() == "square":
+    num2 = input("What is your second number? ")
+    print(calc.square_area(num1, num2))
+elif operation.strip().lower() == "triangle":
+    num2 = input("What is your second number? ")
+    print(calc.triangle_area(2, 4))
+```
